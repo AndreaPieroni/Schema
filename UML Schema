@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlantData>
+    <PlantSpecies>
+        <ScientificName>Plantus exampleus</ScientificName>
+        <Family>Plantae</Family>
+        <VernacularName>Example Plant</VernacularName>
+        <EnglishName>Example Plant</EnglishName>
+        <BalkanCode>B001</BalkanCode>
+        <CountryCode>AL</CountryCode>
+        <ManuscriptCode>M123</ManuscriptCode>
+        <PlantPartUsed>Leaf</PlantPartUsed>
+        <PreparationForm>Infusion</PreparationForm>
+        <RouteOfAdministration>Oral</RouteOfAdministration>
+        <MedicinalUses>
+            <Use>
+                <Category>Respiratory</Category>
+                <Subcategory>Cough Relief</Subcategory>
+            </Use>
+        </MedicinalUses>
+        <NonMedicinalUses>
+            <Use>
+                <Category>Food</Category>
+                <Subcategory>Spice</Subcategory>
+            </Use>
+        </NonMedicinalUses>
+        <ChemicalSubstances>
+            <Substance>
+                <CASRegistryNumber>123-45-6</CASRegistryNumber>
+                <IUPACName>2-Methylbutane</IUPACName>
+                <CommonName>Isopentane</CommonName>
+                <Category>Alkane</Category>
+                <SMILES>CC(C)C</SMILES>
+            </Substance>
+        </ChemicalSubstances>
+        <PharmacologicalEffects>
+            <Effect>Anti-inflammatory</Effect>
+        </PharmacologicalEffects>
+        <ToxicologicalEffects>
+            <Effect>Low Toxicity</Effect>
+        </ToxicologicalEffects>
+        <HerbalPreparations>
+            <Preparation>
+                <Name>Example Tea</Name>
+                <Ingredients>
+                    <Ingredient>Plantus exampleus Leaf</Ingredient>
+                    <Ingredient>Honey</Ingredient>
+                </Ingredients>
+            </Preparation>
+        </HerbalPreparations>
+    </PlantSpecies>
+</PlantData>
