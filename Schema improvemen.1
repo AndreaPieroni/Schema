@@ -1,0 +1,29 @@
+from graphviz import Digraph
+
+# Create a directed graph to represent the improved schema
+schema = Digraph(format="png", comment="Improved Database Schema")
+
+# Add nodes for main entities
+schema.node("Species", "Species\n- speciesID\n- scientificName\n- commonName\n- taxonomicRank\n- conservationStatus\n- altitudeRange")
+schema.node("UseCategory", "UseCategory\n- useCategoryID\n- categoryType\n- useDescription")
+schema.node("Preparation", "Preparation\n- preparationID\n- method\n- duration\n- administrationMethod")
+schema.node("DiseaseSymptom", "DiseaseSymptom\n- diseaseID\n- diseaseName\n- symptomDescription")
+schema.node("BioactiveCompounds", "BioactiveCompounds\n- compoundID\n- compoundName\n- chemicalClass\n- bioactivity")
+schema.node("EnvironmentalContext", "EnvironmentalContext\n- environmentID\n- locationName\n- altitudeRange\n- soilType\n- climateType")
+schema.node("CulturalTradition", "CulturalTradition\n- traditionID\n- culturalGroup\n- seasonalUsage\n- ritualSignificance")
+
+# Add relationships (edges)
+schema.edge("Species", "UseCategory", "hasUse")
+schema.edge("UseCategory", "Preparation", "requires")
+schema.edge("UseCategory", "DiseaseSymptom", "treats")
+schema.edge("DiseaseSymptom", "BioactiveCompounds", "linkedTo")
+schema.edge("Species", "BioactiveCompounds", "contains")
+schema.edge("Species", "EnvironmentalContext", "foundIn")
+schema.edge("Species", "CulturalTradition", "partOf")
+schema.edge("CulturalTradition", "EnvironmentalContext", "influencedBy")
+
+# Render the graph
+schema_filepath = "/mnt/data/improved_schema"
+schema.render(schema_filepath)
+
+schema_filepath
