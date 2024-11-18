@@ -1,0 +1,55 @@
+# Updating the schema diagram with the suggested improvements
+
+from graphviz import Digraph
+
+# Create a new graph
+schema = Digraph(format="png")
+schema.attr(rankdir="LR", size="12,12")
+schema.attr('node', shape='rectangle', style='rounded,filled', color='lightblue')
+
+# Existing entities and relationships
+schema.node("Species", "Species\n- id\n- scientificName\n- vernacularName\n- genus\n- family")
+schema.node("Region", "Region\n- id\n- country\n- biome\n- geoLocation")
+schema.node("EthnicGroup", "Ethnic Group\n- id\n- name\n- language")
+schema.node("Formulation", "Formulation\n- id\n- recipeDescription\n- dosageDescription\n- usageDescription")
+schema.node("UsageCategory", "Usage Category\n- id\n- label\n- category")
+schema.node("Molecule", "Molecule\n- id\n- preferredName\n- inchi\n- smiles")
+schema.node("MedicinalUse", "Medicinal Use\n- id\n- label\n- category\n- sub-category")
+schema.node("NonMedicinalUse", "Non-Medicinal Use\n- id\n- label\n- category\n- sub-category")
+schema.node("AdverseEffects", "Adverse Effects\n- id\n- label\n- category")
+schema.node("SpeciesPart", "Species Part\n- id\n- root\n- leaf\n- bark")
+schema.node("ModeOfPreparation", "Mode of Preparation\n- id\n- infusion\n- tincture\n- juice\n- tea")
+schema.node("ModeOfAdministration", "Mode of Administration\n- id\n- topical\n- drink\n- eat")
+schema.node("Reference", "Reference\n- id\n- title\n- doi\n- journal\n- year")
+
+# Relationships
+schema.edge("Species", "SpeciesPart", "hasSpeciesPart")
+schema.edge("SpeciesPart", "ModeOfPreparation", "hasPreparationType")
+schema.edge("ModeOfPreparation", "ModeOfAdministration", "hasAdministrationMode")
+schema.edge("Formulation", "AdverseEffects", "hasAdverseEffect")
+schema.edge("Formulation", "Molecule", "hasMolecule")
+schema.edge("Region", "EthnicGroup", "hasEthnicGroup")
+schema.edge("EthnicGroup", "Formulation", "hasFormulation")
+schema.edge("Species", "Formulation", "hasSpecies")
+schema.edge("UsageCategory", "MedicinalUse", "aTypeOf")
+schema.edge("UsageCategory", "NonMedicinalUse", "aTypeOf")
+
+# Adding new entities and relationships
+schema.node("PharmacologicalEffects", "Pharmacological Effects\n- id\n- description\n- type")
+schema.node("EcosystemInteractions", "Ecosystem Interactions\n- id\n- type\n- speciesInteraction")
+schema.node("CulturalSignificance", "Cultural Significance\n- id\n- ritual\n- symbolism")
+schema.node("BioavailabilityProperty", "Bioavailability Property\n- id\n- hydrophobicity\n- lipophilicity")
+schema.node("Target", "Target\n- id\n- bindingSite\n- mechanism")
+schema.node("Tradition", "Tradition\n- id\n- culturalContext\n- practiceType")
+
+# New Relationships
+schema.edge("Species", "EcosystemInteractions", "interactsWith")
+schema.edge("PharmacologicalEffects", "Molecule", "associatedWith")  
+schema.edge("Formulation", "PharmacologicalEffects", "producesEffects")
+schema.edge("Tradition", "CulturalSignificance", "hasCulturalValue")
+schema.edge("Species", "Tradition", "usedIn")
+schema.edge("Molecule", "BioavailabilityProperty", "hasBioavailability")
+schema.edge("PharmacologicalEffects", "Target", "affectsTarget")
+
+# Render the updated schema diagram
+schema.render("/mnt/data/improved_schema_v2", format="png", cleanup=False)
